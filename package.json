@@ -1,0 +1,23 @@
+{
+  "name": "dazn-websocket",
+  "version": "1.0.0",
+  "description": "This Frontend module will enable users to join rooms and subscribs to messages via WebSockets",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nativekar/DAZN-WebSockets.git"
+  },
+  "author": "Thakur Yogeshwar Singh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nativekar/DAZN-WebSockets/issues"
+  },
+  "homepage": "https://github.com/nativekar/DAZN-WebSockets#readme",
+  "dependencies": {
+    "uuidv4": "^6.2.12",
+    "ws": "^8.2.3"
+  }
+}
