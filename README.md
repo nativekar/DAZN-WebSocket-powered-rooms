@@ -1,1 +1,1 @@
-# DAZN-WebSockets
+# A simple Frontend module, built as part of the DAZN Engineering Challenge, that allows a web socket server to keep pinging data at unique intervals to clients connected to a room.
