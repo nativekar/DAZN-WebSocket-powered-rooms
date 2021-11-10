@@ -3,7 +3,12 @@ const http = require("http");
 const express = require("express");
 const socketio = require("socket.io");
 const { adminName, messageBody, messageFormatter } = require("./utils/message");
-const { addUsers, removeUser, getAllUsersInRoom } = require("./utils/users");
+const {
+  addUsers,
+  getCurrentUser,
+  removeUser,
+  getAllUsersInRoom,
+} = require("./utils/users");
 
 const app = express();
 const server = http.createServer(app);
@@ -17,10 +22,6 @@ io.on("connection", (socket) => {
   socket.on("joinRoom", ({ username, room }) => {
     const user = addUsers({ id: socket.id, username, room });
     socket.join(user.room);
-    // on connection, emit messages regularly at a set interval
-    interval = setInterval(() => {
-      socket.emit("message", messageFormatter(adminName, messageBody));
-    }, 3500);
     //Broadcast when a client connects
     socket.broadcast
       .to(user.room)
@@ -32,6 +33,23 @@ io.on("connection", (socket) => {
       room: user.room,
       users: getAllUsersInRoom(user.room),
     });
+  });
+
+  // runs when user sends a message
+  socket.on("subscribe", (message) => {
+    const user = getCurrentUser(socket.id);
+    io.to(user.room).emit("message", messageFormatter(user.username, message));
+    // on connection, emit messages regularly at a set interval
+    interval = setInterval(() => {
+      socket.emit("message", messageFormatter(adminName, messageBody));
+    }, 3500);
+  });
+
+  // handle unsubscribe
+  socket.on("unsubscribe", (message) => {
+    const user = getCurrentUser(socket.id);
+    io.to(user.room).emit("message", messageFormatter(user.username, message));
+    clearInterval(interval);
   });
 
   // runs on disconnect
