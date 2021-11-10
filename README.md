@@ -6,6 +6,8 @@ A web socket based Frontend module built as part of the DAZN Front End Engineeri
 
 Allows a web socket server to keep pinging data after a fixed delay to clients connected to different rooms.
 
+User(s) in a room have to send `subscribe` to start reciving messages via the web socket service and `unsubscribe` to stop reciving them.
+
 ### Usage
 
 ```
