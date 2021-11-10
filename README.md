@@ -1,4 +1,4 @@
-## DAZN Web Sockets
+## DAZN FE LIBRARY
 
 A web socket based Frontend module built as part of the DAZN Front End Engineering Challenge.
 
