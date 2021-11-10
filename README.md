@@ -14,3 +14,7 @@ npm run dev
 
 Go to localhost:3000
 ```
+
+#### To-Do
+
+While I've covered all requirements and handled edge cases, the alerting system can be polished.
